@@ -44,6 +44,7 @@ public class Book : LibraryItem
     {
         Console.WriteLine("Book returned.");
     }
+
 }
 
 
@@ -53,16 +54,10 @@ public class Library
 
     private List<ILoanable> _items = new List<ILoanable>();
 
-    public Dictionary<ILoanable, member> _track = new Dictionary<ILoanable, member>();
 
     public void AddItem(ILoanable item)
     {
         _items.Add(item);
-    }
-
-    public void trackP(ILoanable item, member m)
-    {
-        _track.Add(item, m);
     }
 
 }
@@ -99,13 +94,14 @@ public class Program
 {
     public static async Task Main()
     {
+
         Book book1 = new Book();
         member member1 = new member("Anas", 1);
 
-        await using var session = new CheckoutSession();
-        session.AddItem(book1);
+        await using var check = new CheckoutSession();
+        check.AddItem(book1);
 
-        await session.CheckoutItem(member1);
+        await check.CheckoutItem(member1);
 
         Console.WriteLine("Session ended, items returned.");
     }
